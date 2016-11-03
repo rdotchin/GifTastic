@@ -18,8 +18,10 @@ $(document).ready(function(){
 			console.log(giphyURL);
 			console.log(results);
 			for(var i=0; i<10; i++) {
-			/*$('#gifs').append("rating: " + results.data[i].rating + "<br>");*/
-			$('#gifs').append('<iframe src=' + results.data[i].embed_url + '>');
+			$('#gifs').append("rating: " + results.data[i].rating );
+			$('#gifs').append('<iframe src=' + results.data[i].images.fixed_height_still.url + '>');
+			/*$('#gifs').append('<iframe src=' + results.data[i].embed_url+ '>');*/
+			
 		}
 		
 
