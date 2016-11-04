@@ -9,6 +9,9 @@ $(document).ready(function(){
 
 
 	//runs ajax to giphy to pull gifs to the website
+	
+
+
 	function pullGifs() {
 		var apiKey = "dc6zaTOxFJmzC";
 		var giphyURL = "http://api.giphy.com/v1/gifs/search?q=" + searchWord[0] + "&limit=10&rating=pg&api_key=" + apiKey;
@@ -18,9 +21,11 @@ $(document).ready(function(){
 			console.log(giphyURL);
 			console.log(results);
 			for(var i=0; i<10; i++) {
-			$('#gifs').append("rating: " + results.data[i].rating );
-			/*$('#gifs').append('<iframe src=' + results.data[i].images.fixed_height_still.url + '>');*/
-			$('#gifs').append('<iframe src=' + results.data[i].embed_url+ '>');
+			/*$('#gifs').append("rating: " + results.data[i].rating );*/
+			$('#gifs').append('<iframe src=' + results.data[i].images.fixed_height_still.url + '>');
+			$('#gifs').append('<iframe src=' + results.data[i].images.fixed_height.url+ '>');
+			$('<iframe src=' + results.data[i].images.fixed_height_still.url + '>').hide();
+			/*$('#gifs').append('<img src=' + results.data[i].images.fixed_height_still.url + ' alt="Static Image" data-alt=' + results.data[i].images.fixed_height.url+ '>');*/
 			$('#gifs').on('click', function() {
 
 
@@ -37,6 +42,7 @@ $(document).ready(function(){
 
 	//creates buttons and gives them a class
 	function buildButtons() {
+		$('#gifButtons').empty();
 		for(var i = 0; i < topics.length; i++) {
 			var button = $('<button value=' + topics[i] + '>');
 			button.addClass('gifButtons');
@@ -57,14 +63,14 @@ $(document).ready(function(){
 	});
 
 	$('#addGif').on("click", function() {
-		var value2 = $('#gif-input').val();
-		topics.push(value2);
-		
-		var button = $('<button value=' + topics[5] + '>');
+		var sport = $('#gif-input').val().trim();
+		topics.push(sport);
+		buildButtons();
+		/*var button = $('<button value=' + value2 + '>');
 			button.addClass('gifButtons');
-			button.attr('data-name', topics[5]);
-			button.text(topics[5]);
-			$('#gifButtons').append(button);
+			button.attr('data-name', value2);
+			button.text(value2);
+			$('#gifButtons').append(button);*/
 	})
 console.log(topics);
 
