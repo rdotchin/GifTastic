@@ -19,9 +19,12 @@ $(document).ready(function(){
 			console.log(results);
 			for(var i=0; i<10; i++) {
 			$('#gifs').append("rating: " + results.data[i].rating );
-			$('#gifs').append('<iframe src=' + results.data[i].images.fixed_height_still.url + '>');
-			/*$('#gifs').append('<iframe src=' + results.data[i].embed_url+ '>');*/
-			
+			/*$('#gifs').append('<iframe src=' + results.data[i].images.fixed_height_still.url + '>');*/
+			$('#gifs').append('<iframe src=' + results.data[i].embed_url+ '>');
+			$('#gifs').on('click', function() {
+
+
+			})
 		}
 		
 
@@ -52,6 +55,18 @@ $(document).ready(function(){
 		pullGifs();
 
 	});
+
+	$('#addGif').on("click", function() {
+		var value2 = $('#gif-input').val();
+		topics.push(value2);
+		
+		var button = $('<button value=' + topics[5] + '>');
+			button.addClass('gifButtons');
+			button.attr('data-name', topics[5]);
+			button.text(topics[5]);
+			$('#gifButtons').append(button);
+	})
+console.log(topics);
 
 
 
