@@ -1,6 +1,7 @@
-body {
+#wrapper {
 	max-width: 1080px;
 	min-width: 1080px;
+	background-image: url("../../wallpaper.png");
 }
 
 #gif-form {
@@ -9,6 +10,10 @@ body {
 
 #gifs {
 	float: left;
+}
+
+img {
+	margin-right: 5px;
 }
 
 

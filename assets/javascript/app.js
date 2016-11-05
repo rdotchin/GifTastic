@@ -3,37 +3,37 @@ $(document).ready(function(){
 	//Global Variables
 	//----------------------------------------------------------
 	var topics = ["hockey", "baseball", "football", "lacrosse", "snowboarding", "golf"];
-	/*var apiKey = "dc6zaTOxFJmzC";*/
 	var searchWord = [];
-	/*var giphyURL = "http://api.giphy.com/v1/gifs/search?q=" + searchWord[0] + "&limit=10&&api_key=" + apiKey;*/
-
-
-	//runs ajax to giphy to pull gifs to the website
+	var gifSelect = [];
 	
-
-
-	function pullGifs() {
+	
+	//ajax
+	//----------------------------------------------------------
+	function displayGifs() {
 		var apiKey = "dc6zaTOxFJmzC";
-		var giphyURL = "http://api.giphy.com/v1/gifs/search?q=" + searchWord[0] + "&limit=10&rating=pg&api_key=" + apiKey;
-	$.ajax({url: giphyURL, method: 'GET'})
-		.done(function(results) {
-			$('#gifs').empty();
-			console.log(giphyURL);
-			console.log(results);
-			for(var i=0; i<10; i++) {
-			/*$('#gifs').append("rating: " + results.data[i].rating );*/
-			$('#gifs').append('<iframe src=' + results.data[i].images.fixed_height_still.url + '>');
-			$('#gifs').append('<iframe src=' + results.data[i].images.fixed_height.url+ '>');
-			$('<iframe src=' + results.data[i].images.fixed_height_still.url + '>').hide();
-			/*$('#gifs').append('<img src=' + results.data[i].images.fixed_height_still.url + ' alt="Static Image" data-alt=' + results.data[i].images.fixed_height.url+ '>');*/
-			$('#gifs').on('click', function() {
-
-
-			})
-		}
+		var giphyURL = "http://api.giphy.com/v1/gifs/search?q=" + searchWord + "&limit=10&rating=pg&api_key=" + apiKey;
 		
 
-		})
+		$.ajax({url: giphyURL, method: 'GET'}).done(function(response) {
+				//clear gifs from webpage
+				$('#gifs').empty();
+				//loop to create gifs on webpage when button clicked
+				for(var i=0; i<10; i++) {
+				$('#gifs').append('<iframe src=' + response.data[i].images.fixed_height.url+ '>');
+				}
+
+				//on click event to change image to gif.  Double click to go back.
+				/*$('iframe').on('click', function() {
+					gifSelect = [];
+					var gifValue = $(this).val();
+					gifSelect.push(gifSelect)
+					console.log(gifSelect);*/
+
+				//maybe another ajax to grab the gif instead of image
+				//double click to go back to image
+
+				})
+			/*})*/
 	};
 
 	
@@ -42,41 +42,52 @@ $(document).ready(function(){
 
 	//creates buttons and gives them a class
 	function buildButtons() {
+		//empty buttons from #gifButtons div
 		$('#gifButtons').empty();
+		//repopulate buttons in topics array
 		for(var i = 0; i < topics.length; i++) {
 			var button = $('<button value=' + topics[i] + '>');
 			button.addClass('gifButtons');
 			button.attr('data-name', topics[i]);
 			button.text(topics[i]);
 			$('#gifButtons').append(button);
+			console.log(topics);
 		}
 	}
+
+	//UI
+	//----------------------------------------------------------------
+	//builds the initial site sports buttons
 	buildButtons();
 
-	//on click function to run buttons word to giphy for search results
+	//on click function to run buttons word to giphy for search response
 	$('button').on("click", function() {
 		var value = $(this).val();
 		searchWord = [];
 		searchWord.push(value);
-		pullGifs();
+		displayGifs();
 
 	});
 
-	$('#addGif').on("click", function() {
+	//on click to create new sports topic button
+	$('#addGif').on('click', function() {
+
 		var sport = $('#gif-input').val().trim();
 		topics.push(sport);
 		buildButtons();
-		/*var button = $('<button value=' + value2 + '>');
-			button.addClass('gifButtons');
-			button.attr('data-name', value2);
-			button.text(value2);
-			$('#gifButtons').append(button);*/
+		return false;
+		
+		
 	})
-console.log(topics);
 
 
 
 
+//for ratings	
+				/*$('#gifs').append("rating: " + response.data[i].rating );*/
+				//for images
+				/*$('#gifs').append('<iframe src=' + response.data[i].images.fixed_height_still.url + '>');*/
+				//for gifs
 
 
 
