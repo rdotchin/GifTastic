@@ -13,6 +13,11 @@ body {
 	
 }
 
+h1 {
+	font-size: 26px;
+	text-align: center;
+}
+
 img {
 	margin-right: 5px;
 	height: 200px;
@@ -31,6 +36,12 @@ iframe {
 	background-color: #0021A5;
 	color: white;
 	border: 2px solid #FA4616;
+
+}
+
+#pageButtons {
+	text-align: center;
+	padding-bottom: 15px;
 }
 
 .gifButtons:hover {

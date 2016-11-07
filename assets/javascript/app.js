@@ -4,6 +4,7 @@ $(document).ready(function(){
 	//----------------------------------------------------------
 	var topics = ["hockey", "baseball", "football", "lacrosse", "snowboarding", "golf"];
 	var searchWord = [];
+
 	
 	
 	
@@ -20,24 +21,21 @@ $(document).ready(function(){
 			console.log(giphyURL);
 			//loop to create gifs on webpage when button clicked
 			for(var i=0; i<10; i++) {
-			/*$('#gifs').append("rating: " + response.data[i].rating )*/
-			var gifImage = $('<img src=' + response.data[i].images.fixed_height_still.url + '>');
-			var gifGif = $('<iframe src=' + response.data[i].images.fixed_height.url + '>')
-			gifImage.attr('value', response.data[i]);
-			$('#gifs').append(gifImage);
-			$('#gifs').append(gifGif);
-			$('iframe').hide();
+				/*$('#gifs').append("rating: " + response.data[i].rating )*/
+				var gifImage = $('<img src=' + response.data[i].images.fixed_height_still.url + '>');
+				var gifGif = $('<iframe src=' + response.data[i].images.fixed_height.url + '>')
+				gifImage.attr('data-value', response.data[i].images.fixed_height.url);
+				$('#gifs').append(gifImage);
+				$('#gifs').append(gifGif);
+				$('iframe').hide();
 			}
 
-			$('img').on("click", function() {
+			$('#gifs').on("click", "img", function() {
 				$('img').hide();
 				$('iframe').show();
-			})	
-		})
-			/*('#gifs').on("click", function() {
-
-
-			})*/
+			});	
+		});
+			
 	};
 
 	
@@ -63,22 +61,13 @@ $(document).ready(function(){
 		searchWord.push(value);
 		displayGifs();
 
-	});
-	}
+	})
+	};
 
 	//User Interaction
 	//----------------------------------------------------------------
 	//builds the initial site sports buttons
 	buildButtons();
-
-	//on click function to run buttons word to giphy for search response
-/*	$('.gifButtons').on("click", function() {
-		var value = $(this).val();
-		searchWord = [];
-		searchWord.push(value);
-		displayGifs();
-
-	});*/
 
 	//on click to create new sports topic button
 	$('#addGif').on('click', function() {
@@ -91,39 +80,4 @@ $(document).ready(function(){
 		
 		
 	})
-
-
-	
-
-
-
-
-
-
-
-
-	//NOTES
-	//-----------------------------------------------------------------
-		//on click event to change image to gif.  Double click to go back.
-				/*$('iframe').on('click', function() {
-					gifSelect = [];
-					var gifValue = $(this).val();
-					gifSelect.push(gifSelect)
-					console.log(gifSelect);*/
-
-				//maybe another ajax to grab the gif instead of image
-				//double click to go back to image
-
-			//for ratings	
-			/*$('#gifs').append("rating: " + response.data[i].rating );*/
-			//for images
-			/*$('#gifs').append('<iframe src=' + response.data[i].images.fixed_height_still.url + '>');*/
-			//for gifs
-			//$('#gifs').append('<iframe src=' + response.data[i].images.fixed_height.url+ '>');
-
-
-
-
-
-
 });
