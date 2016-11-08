@@ -4,42 +4,32 @@
 	background-image: url("../../wallpaper.png");
 }
 
-#gif-form {
-	float: right;
-}
-
-#gifs {
-	padding: 15px;
-	
-}
-
-#gif {
-	display: inline-block;
-}
-
-/*the ratings paragraphs*/
-div p {
-	/*padding-bottom: 15px;*/
-	display: inline;
-}
-
+/*heading*/
 h1 {
 	font-family: 'Oswald', sans-serif;
 	color: #0021A5;
-	padding-bottom: 5px;
+	padding-bottom: 10px;
 	font-size: 40px;
 	text-align: center;
 }
 
-img {
-	display: inline-block;
-	margin-right: 5px;
-	height: 200px;
-	width: 350px;
+/*text input for new button*/
+#gif-form {
+	float: right;
 }
 
+#gif-input {
+	width: 300px;
+}
 
+label {
+	font-family: 'Oswald', sans-serif;
+	color: #0021A5;
+}
 
+#addGif {
+
+}
 /*sports buttons at the top*/
 .sportsButtons {
 	margin-right: 2px;  
@@ -56,10 +46,46 @@ img {
 	padding-bottom: 15px;
 }
 
-.gifButtons:hover {
+.sportsButtons:hover {
 	border-radius: 8px;
 	background-color: #FA4616;
 	color: white;
 	border: 2px solid #0021A5;
 }
 
+#gifs {
+}
+
+img {
+	margin-right: 5px;
+	height: 200px;
+	width: 350px;
+	padding: 5px;
+}
+
+
+
+.gifWrapper {
+	display: inline-block;
+}
+
+.gifWrapper p {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+/*
+
+
+
+
+/*the ratings paragraphs*/
+/*div p {
+	padding-bottom: 15px;
+	position: absolute;
+}
+
+
+
+
+*/
