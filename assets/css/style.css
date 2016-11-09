@@ -8,6 +8,7 @@
 h1 {
 	font-family: 'Oswald', sans-serif;
 	color: #0021A5;
+	padding-top: 10px;
 	padding-bottom: 10px;
 	font-size: 40px;
 	text-align: center;
@@ -16,15 +17,18 @@ h1 {
 /*text input for new button*/
 #gif-form {
 	float: right;
+	padding-top: 10px;
 }
 
 #gif-input {
+	padding-top: 10px;
 	width: 300px;
 }
 
 label {
 	font-family: 'Oswald', sans-serif;
 	color: #0021A5;
+	font-size: 20px;
 }
 
 #addGif {

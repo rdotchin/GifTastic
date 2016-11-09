@@ -4,13 +4,11 @@ $(document).ready(function(){
 	//----------------------------------------------------------
 	var topics = ['hockey', 'baseball', 'football', 'lacrosse', 'snowboarding', 'golf', 'polo', 'swimming'];
 	var searchWord = [];
-
-	
-	
 	
 	//AJAX
 	//----------------------------------------------------------
 	function displayGifs() {
+		//variables for giphy api key and url to be used in AJAX
 		var apiKey = "dc6zaTOxFJmzC";
 		var giphyURL = "https://api.giphy.com/v1/gifs/search?q=" + searchWord + "&limit=10&rating=pg&api_key=" + apiKey;
 		
@@ -18,40 +16,45 @@ $(document).ready(function(){
 		$.ajax({url: giphyURL, method: 'GET'}).done(function(response) {
 			//clear gifs from webpage
 			$('#gifs').empty();
-			console.log(giphyURL);
+
 			//loop to create gifs on webpage when button clicked
 			for(var i=0; i<10; i++) {
 				var image = response.data[i].images.fixed_height_still.url;
 				var animated = response.data[i].images.fixed_height.url;
-				var rating = response.data[i].rating;
-				var gifImage = $('<img src=' + image + '>');
-				var gifWrapper = $('<div class="gifWrapper">');
-				//add class to gifs
+				var rating = '<p>Rating: ' + response.data[i].rating.toUpperCase();
+				var gifImage = $('<img>');
+				var gifWrapper = $('<div/>');
+				
+				//add class and attributes to be used in the on click event
+				gifWrapper.addClass('gifWrapper');
 				gifImage.addClass('gifs');
+				gifImage.attr('src', image)
 				gifWrapper.attr('id', "gifWrap" + [i])
-				gifImage.attr('id', 'gif' + [i]);
 				gifImage.attr('data-still', image);
 				gifImage.attr('data-animate', animated);
 				gifImage.attr('data-state', 'still');
+
+				//append the div to gifs ID then append rating and gifImage to the div
 				$('#gifs').append(gifWrapper);
-				$('#gifWrap' + [i]).append('<p>Rating: ' + rating.toUpperCase());
+				$('#gifWrap' + [i]).append(rating);
 				$('#gifWrap' + [i]).append(gifImage);
 				
 				
 			}
+			
+			//on click to change gif from still to animate and back
+			$('.gifs').on('click', function() {
+				var state = $(this).attr('data-state');
 
-		$('.gifs').on('click', function() {
-			var state = $(this).attr('data-state');
-
-			if ( state == 'still'){
-				$(this).attr('src', $(this).data('animate'));
-				$(this).attr('data-state', 'animate');
-			}
-			else {
-				$(this).attr('src', $(this).data('still'));
-				$(this).attr('data-state', 'still');
-			}
-		})
+				if ( state == 'still'){
+					$(this).attr('src', $(this).data('animate'));
+					$(this).attr('data-state', 'animate');
+				}
+				else {
+					$(this).attr('src', $(this).data('still'));
+					$(this).attr('data-state', 'still');
+				}
+			})
 
 		})
 			
